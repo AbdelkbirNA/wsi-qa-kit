@@ -1,0 +1,21 @@
+requirement,test
+WSI-FMT-01 Vendor formats Aperio SVS / Mirax / Zeiss CZI / Huron TIFF are detected,tag:WSI-FMT-01
+WSI-FMT-02 Generic tiled pyramidal TIFF is detected,tag:WSI-FMT-02
+WSI-META-01 Dimensions and level count match the dataset manifest,tag:WSI-META-01
+WSI-META-02 Microns per pixel on both axes match the manifest,tag:WSI-META-02
+WSI-META-03 Objective power matches the manifest,tag:WSI-META-03
+WSI-META-04 Pyramid downsamples increase and level sizes agree with them,tag:WSI-META-04
+WSI-META-05 Label macro and thumbnail associated images are readable,tag:WSI-META-05
+WSI-ACC-01 A region can be read on every pyramid level,tag:WSI-ACC-01
+WSI-ACC-02 The lowest level contains real image data,tag:WSI-ACC-02
+WSI-ACC-03 Repeated reads return identical pixels,tag:WSI-ACC-03
+WSI-ACC-04 Regions outside the slide are transparent,tag:WSI-ACC-04
+WSI-ACC-05 Thumbnails fit the requested box and keep the aspect ratio,tag:WSI-ACC-05
+WSI-SYN-01 Generated pyramids have the expected level geometry,tag:WSI-SYN-01
+WSI-SYN-02 Regions across tile boundaries are pixel-exact,tag:WSI-SYN-02
+WSI-SYN-03 TIFF resolution tags are exposed as microns per pixel,tag:WSI-SYN-03
+WSI-ERR-01 Non-slide files are rejected,tag:WSI-ERR-01
+WSI-ERR-02 Truncated slides are rejected,tag:WSI-ERR-02
+WSI-ERR-03 Missing files are rejected,tag:WSI-ERR-03
+WSI-BENCH-01 The benchmark reports latency and throughput for every level,tag:WSI-BENCH-01
+WSI-DATA-01 Downloaded slides are verified against their checksum,tag:WSI-DATA-01

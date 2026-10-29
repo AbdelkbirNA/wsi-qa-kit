@@ -1,0 +1,89 @@
+{
+  "base_url": "https://openslide.cs.cmu.edu/download/openslide-testdata/",
+  "license": "OpenSlide test data, CC0-1.0",
+  "slides": [
+    {
+      "id": "aperio-svs",
+      "file": "Aperio/CMU-1-Small-Region.svs",
+      "sha256": "ed92d5a9f2e86df67640d6f92ce3e231419ce127131697fbbce42ad5e002c8a7",
+      "format": "aperio",
+      "dimensions": [
+        2220,
+        2967
+      ],
+      "level_count": 1,
+      "mpp": [
+        0.499,
+        0.499
+      ],
+      "objective_power": "20",
+      "associated_images": [
+        "label",
+        "macro",
+        "thumbnail"
+      ]
+    },
+    {
+      "id": "mirax-mrxs",
+      "file": "Mirax/CMU-1-Saved-1_16.zip",
+      "open": "CMU-1-Saved-1_16.mrxs",
+      "sha256": "5bf66d612475e30bdc46e0f16e8e88558e02fb1fd3cb83bfd804366462b842bc",
+      "format": "mirax",
+      "dimensions": [
+        7436,
+        15494
+      ],
+      "level_count": 6,
+      "mpp": [
+        3.7172,
+        3.7163
+      ],
+      "objective_power": "20",
+      "associated_images": [
+        "label",
+        "macro",
+        "thumbnail"
+      ]
+    },
+    {
+      "id": "zeiss-czi",
+      "file": "Zeiss/Zeiss-5-SlidePreview-Zstd0.czi",
+      "sha256": "920c10f45b781591d7a46759e692e18e14278c2d41b069b518f81fda0748dd22",
+      "format": "zeiss",
+      "dimensions": [
+        1260,
+        615
+      ],
+      "level_count": 1,
+      "mpp": [
+        35.8909,
+        35.834
+      ],
+      "objective_power": "20",
+      "associated_images": [
+        "thumbnail"
+      ]
+    },
+    {
+      "id": "huron-tiff",
+      "file": "Huron/Huron-1.tif",
+      "sha256": "295506f9872becce44033baa830dfd7a7644d104a832e6a7f73565be990c465d",
+      "format": "huron",
+      "dimensions": [
+        6022,
+        10503
+      ],
+      "level_count": 3,
+      "mpp": [
+        0.4,
+        0.4
+      ],
+      "objective_power": null,
+      "associated_images": [
+        "label",
+        "macro",
+        "thumbnail"
+      ]
+    }
+  ]
+}

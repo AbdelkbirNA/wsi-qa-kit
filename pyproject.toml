@@ -1,0 +1,21 @@
+[project]
+name = "wsi-qa-kit"
+version = "0.1.0"
+description = "Automated validation and benchmarking of whole slide image (WSI) access with OpenSlide"
+requires-python = ">=3.9"
+dependencies = ["openslide-python>=1.4", "openslide-bin>=4.0", "numpy>=1.24", "tifffile>=2023.7"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["wsi_qa"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+junit_family = "xunit1"
+markers = ["req(id): requirement covered by the test (exported to JUnit XML)"]

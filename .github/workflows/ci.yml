@@ -1,0 +1,66 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/cache@v4
+        with:
+          path: .data
+          key: slides-${{ hashFiles('datasets/slides.json') }}
+      - run: pip install -e ".[dev]"
+      - name: Validation suites (real vendor slides + generated pyramids)
+        run: pytest -q --junitxml results/junit.xml
+        env:
+          WSI_REQUIRE_DATA: "1"
+      - uses: actions/checkout@v4
+        if: always()
+        with:
+          repository: AbdelkbirNA/qa-report-kit
+          path: qa-report-kit
+      - name: Quality gate and requirement traceability
+        if: always()
+        run: |
+          PYTHONPATH=qa-report-kit python -m qa_report_kit results/junit.xml --requirements requirements.csv \
+            --md results/quality.md --html results/quality.html --min-pass-rate 100 --strict-trace
+          cat results/quality.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: results/
+
+  docker:
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: .data
+          key: slides-${{ hashFiles('datasets/slides.json') }}
+      - run: docker build -t wsi-qa-kit .
+      - name: Suites inside the container
+        run: |
+          mkdir -p .data results
+          docker run --rm -u "$(id -u)" -e WSI_REQUIRE_DATA=1 \
+            -v "$PWD/.data:/data" -v "$PWD/results:/results" wsi-qa-kit
+      - name: Tile-read benchmark inside the container
+        run: |
+          docker run --rm -u "$(id -u)" -v "$PWD/.data:/data" -v "$PWD/results:/results" wsi-qa-kit \
+            python -m wsi_qa bench datasets/slides.json --data /data --reads 100 \
+              --json /results/bench.json --md /results/bench.md --max-p95-ms 250
+          cat results/bench.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: docker-results
+          path: results/
